@@ -3,7 +3,7 @@ package com.fishpan;
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("get value = " + getValue1());
+		System.out.println("get value = " + getValue2());
 	}
 	
 	/**
@@ -36,6 +36,44 @@ public class Main {
 			return ++a;
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			System.out.println("finally -> " + a);
+			return ++a;
+		}
+	}
+	
+	/**
+	 * 这种情况和上的getValue1类似，finally总会执行，并会覆盖catch中的返回值
+	 * @return
+	 */
+	public static int getValue2(){
+		int a = 1;
+		try {
+			System.out.println("try -> " + a);
+			int b = Integer.parseInt("a");
+			return ++a;
+		} catch (Exception e) {
+			System.out.println("catch -> " + a);
+			return ++a;
+		} finally {
+			++a;
+			System.out.println("finally -> " + a);
+		}
+	}
+	
+	/**
+	 * 这种情况和上的getValue1类似，finally总会执行，并会覆盖catch中的返回值
+	 * @return
+	 */
+	public static int getValue3(){
+		int a = 1;
+		try {
+			System.out.println("try -> " + a);
+			int b = Integer.parseInt("a");
+			return ++a;
+		} catch (Exception e) {
+			System.out.println("catch -> " + a);
+			return ++a;
 		} finally {
 			System.out.println("finally -> " + a);
 			return ++a;
